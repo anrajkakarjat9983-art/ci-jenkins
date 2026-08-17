@@ -1,0 +1,599 @@
+# StudentHub Registration Page
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration System | StudentHub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2ff, #f8f9ff);
+            color: #172033;
+        }
+
+        /* Navbar */
+
+        .register-nav {
+            height: 75px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .register-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        /* Main */
+
+        .register-container {
+            min-height: calc(100vh - 75px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 1000px;
+
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+
+            background: white;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Left Panel */
+
+        .register-info {
+            background: linear-gradient(145deg, #4f46e5, #6366f1);
+
+            color: white;
+
+            padding: 50px 40px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .register-icon {
+            width: 75px;
+            height: 75px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.18);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            margin-bottom: 30px;
+        }
+
+        .register-info h1 {
+            font-size: 36px;
+            line-height: 1.2;
+
+            margin-bottom: 18px;
+        }
+
+        .register-info p {
+            color: #e0e7ff;
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 15px 0;
+
+            color: white;
+        }
+
+        .benefit-icon {
+            width: 30px;
+            height: 30px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.2);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Form */
+
+        .register-form-area {
+            padding: 45px 50px;
+        }
+
+        .form-heading {
+            margin-bottom: 30px;
+        }
+
+        .form-heading h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .form-heading p {
+            color: #667085;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+            color: #344054;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #6366f1;
+
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #98a2b3;
+        }
+
+        /* Register Button */
+
+        .register-button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            margin-top: 5px;
+        }
+
+        .register-button:hover {
+            background: #4338ca;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Message */
+
+        #message {
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-weight: 600;
+
+            min-height: 22px;
+        }
+
+        /* Footer text */
+
+        .form-footer {
+            text-align: center;
+
+            color: #98a2b3;
+
+            font-size: 13px;
+
+            margin-top: 22px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+
+            .register-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .register-info {
+                padding: 35px;
+            }
+
+            .register-info h1 {
+                font-size: 30px;
+            }
+
+            .register-form-area {
+                padding: 35px 25px;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .register-nav {
+                padding: 0 20px;
+            }
+
+            .register-logo {
+                font-size: 20px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav class="register-nav">
+
+        <a href="/" class="register-logo">
+            🎓 StudentHub
+        </a>
+
+        <a href="/" class="back-home">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+    <!-- Registration Section -->
+
+    <main class="register-container">
+
+        <div class="register-wrapper">
+
+
+            <!-- Information Panel -->
+
+            <section class="register-info">
+
+                <div class="register-icon">
+                    🎓
+                </div>
+
+                <h1>
+                    Join StudentHub
+                </h1>
+
+                <p>
+                    Create your student profile and become part
+                    of our digital student registration system.
+                </p>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Quick & Easy Registration
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Secure Data Validation
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Automated System Testing
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Reliable Data Storage
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- Form -->
+
+            <section class="register-form-area">
+
+                <div class="form-heading">
+
+                    <h2>
+                        Student Registration
+                    </h2>
+
+                    <p>
+                        Enter your details to create your profile.
+                    </p>
+
+                </div>
+
+
+                <form id="registrationForm">
+
+
+                    <!-- Name + Email -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="studentName">
+                                Student Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="example@gmail.com"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Mobile + Branch -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="mobile">
+                                Mobile Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="mobile"
+                                placeholder="10-digit mobile number"
+                                maxlength="10"
+                                pattern="[0-9]{10}"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="branch">
+                                Branch
+                            </label>
+
+                            <select id="branch" required>
+
+                                <option value="">
+                                    Select your branch
+                                </option>
+
+                                <option value="Computer Science">
+                                    Computer Science
+                                </option>
+
+                                <option value="Information Technology">
+                                    Information Technology
+                                </option>
+
+                                <option value="Electronics">
+                                    Electronics
+                                </option>
+
+                                <option value="Mechanical">
+                                    Mechanical
+                                </option>
+
+                                <option value="Civil">
+                                    Civil
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Minimum 6 characters"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="register-button"
+                    >
+                        Create Student Account →
+                    </button>
+
+
+                    <!-- Message -->
+
+                    <p id="message"></p>
+
+
+                    <p class="form-footer">
+                        Your information will be validated before registration.
+                    </p>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
+```
